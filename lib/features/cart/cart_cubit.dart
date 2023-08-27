@@ -7,7 +7,9 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 class CartCubit extends Cubit<CartState> {
   CartCubit() : super(const CartState(items: []));
 
-  void addToCart(Product product) async {
+  void addToCart(
+    Product product,
+  ) async {
     final setItems = List<CartItem>.from(state.items);
     final mapIndex =
         setItems.indexWhere((item) => item.product.id == product.id);

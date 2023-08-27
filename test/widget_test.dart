@@ -1,31 +1,32 @@
-// This is a basic Flutter widget test.
-//
-// To perform an interaction with a widget in your test, use the WidgetTester
-// utility that Flutter provides. For example, you can send tap and scroll
-// gestures. You can also use WidgetTester to find child widgets in the widget
-// tree, read text, and verify that the values of widget properties are correct.
-
-import 'package:app/app.dart';
-import 'package:flutter/material.dart';
+import 'package:app/model/cart_model.dart';
+import 'package:app/model/product_model.dart';
 import 'package:flutter_test/flutter_test.dart';
-
-import 'package:app/main.dart';
+import 'package:app/features/cart/cart_cubit.dart';
+import 'package:app/features/cart/cart_state.dart';
 
 void main() {
-  testWidgets('Counter increments smoke test', (WidgetTester tester) async {
-    // Build our app and trigger a frame.
-    await tester.pumpWidget(const App());
+  group('CartCubit', () {
+    late CartCubit cartCubit;
 
-    // Verify that our counter starts at 0.
-    expect(find.text('0'), findsOneWidget);
-    expect(find.text('1'), findsNothing);
+    setUp(() {
+      cartCubit = CartCubit();
+    });
 
-    // Tap the '+' icon and trigger a frame.
-    await tester.tap(find.byIcon(Icons.add));
-    await tester.pump();
+    tearDown(() {
+      cartCubit.close();
+    });
 
-    // Verify that our counter has incremented.
-    expect(find.text('0'), findsNothing);
-    expect(find.text('1'), findsOneWidget);
+    test('adding the cart updates the state', () async {
+      final cubit = CartCubit();
+      final setItems = List<CartItem>.from(cubit.state.items);
+      cubit.emit(CartState(items: setItems));
+      expect(cartCubit.state, CartState(items: setItems));
+    });
+    test('adding the cart updates the state is Emtry', () async {
+      final cubit = CartCubit();
+      final setItems = [];
+      cubit.emit(const CartState(items: []));
+      expect(cartCubit.state.items, setItems);
+    });
   });
 }

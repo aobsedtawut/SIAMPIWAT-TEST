@@ -40,3 +40,9 @@ Before running this application, make sure you have the following prerequisites 
    ```
 
 6. Interact with the application on the connected device or emulator.
+
+8. Currently I use FVM flutter version 3.13.1 to run myproject
+
+  -  You can follow to Step in https://fvm.app/docs/getting_started/installation
+
+

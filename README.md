@@ -15,7 +15,7 @@ Before running this application, make sure you have the following prerequisites 
 1. Clone the repository:
 
    ```bash
-   git clone 
+   git clone https://github.com/aobsedtawut/SIAMPIWAT-TEst.git
    ```
 
 2. Navigate to the project directory:
